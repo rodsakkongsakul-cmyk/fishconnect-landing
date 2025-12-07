@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>FishConnect – Buyer Landing (สำหรับผู้ซื้อปลาสวยงาม)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+    n.queue=[]; t=b.createElement(e); t.async=!0;
+    t.src=v; s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '711655628268252');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1"
+      src="https://www.facebook.com/tr?id=711655628268252&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0b1120;
+      --card: #020617;
+      --blue: #2563eb;
+      --blue-soft: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #000 60%);
+      color: var(--text-main);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.9);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+    }
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.9);
+    }
+
+    .section { padding: 70px 16px 80px; }
+    .container { max-width: 1120px; margin: 0 auto; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 42px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .h1 {
+      font-size: clamp(26px, 3.1vw, 36px);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .lead {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 11px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.95);
+    }
+    .primary-btn span { margin-left: 6px; font-size: 16px; }
+    .muted-note {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    .hero-images {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 28px 60px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    @media (max-width: 900px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      padding: 22px 22px 20px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .card h3 {
+      font-size: 18px;
+      margin: 0 0 6px;
+      color: #e5e7eb;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 12px 0;
+    }
+    .faq-q { font-size: 14px; font-weight: 600; }
+    .faq-a { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+    .form-wrapper {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 22px;
+      padding: 28px 24px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .form-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .form-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 13px; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: none;
+      background: #e5edff;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+    }
+    textarea { resize: vertical; min-height: 96px; }
+    .form-btn {
+      width: 100%;
+      margin-top: 6px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.98);
+    }
+    .form-note { font-size: 11px; color: #9ca3af; margin-top: 6px; }
+    .form-status { margin-top: 10px; font-size: 13px; }
+
+    .consent-group { margin-top: 6px; margin-bottom: 4px; font-size: 12px; color: #9ca3af; }
+    .consent-label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+    .consent-label input[type="checkbox"] { margin-top: 3px; }
+    .consent-label a { color: #60a5fa; text-decoration: underline; }
+
+    .download-bar {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+    }
+    .download-btn {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-muted);
+      font-size: 11px;
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .download-bar { left: 50%; transform: translateX(-50%); }
+    }
+
+    .footer {
+      padding: 22px 16px 28px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: #020617;
+      font-size: 11px;
+      color: #6b7280;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">🐟</div>
+      <div>FishConnect · สำหรับผู้ซื้อปลาสวยงาม</div>
+    </div>
+    <button class="nav-cta" onclick="scrollToLead()">ลงทะเบียนเพื่อรับตัวอย่าง Digital Pedigree</button>
+  </div>
+</header>
+
+<!-- HERO BUYER -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="label">สำหรับคนซื้อปลากัด ปลาคราฟ์ ปลาทอง และปลาสวยงาม</div>
+        <div class="h1">
+          อยากรู้จริง ๆ ไหมว่า ปลาที่คุณซื้อ<br/>มาจากสายพันธุ์ไหน และฟาร์มอะไร?
+        </div>
+        <p class="lead">
+          FishConnect ช่วยคุณตรวจสอบสายพันธุ์ ดูพ่อแม่พันธุ์ ฟาร์มต้นทาง และประวัติการโอน  
+          ผ่าน QR Code แทนตัวปลาแต่ละตัว – ทำให้การซื้อปลาแพง ๆ รู้สึกปลอดภัยขึ้น
+        </p>
+        <div class="pill">
+          ✅ เหมาะกับคนที่ซื้อปลาหลักร้อย–หลักหมื่น และอยากมั่นใจว่า “ไม่โดนหลอก”
+        </div>
+        <button class="primary-btn" onclick="scrollToLead()">
+          ลงทะเบียนขอดูตัวอย่าง Digital Pedigree <span>→</span>
+        </button>
+        <div class="muted-note">
+          หน้านี้มีไว้เพื่อทดสอบว่าคนซื้อปลา “สนใจข้อมูลสายพันธุ์จริง ๆ แค่ไหน” ก่อนสร้างฟีเจอร์เต็ม
+        </div>
+      </div>
+      <div class="hero-images">
+        <img src="https://i.ibb.co/ycXMDK7m/UX-UI.png" class="hero-img" alt="Buyer UX UI 1" />
+        <img src="https://i.ibb.co/mCVmMZMH/UX-UI1.png" class="hero-img" alt="Buyer UX UI 2" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER PAIN POINTS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">ปัญหาที่คนซื้อปลามักเจอ</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>ไม่รู้ว่าสายแท้หรือไม่</h3>
+        ซื้อปลาจากรูปในออนไลน์ แต่ไม่รู้เลยว่าพ่อแม่พันธุ์คืออะไร สายไหน ข้ามฟาร์มหรือไม่  
+        ทำให้ไม่กล้าซื้อปลาราคาแพง
+      </div>
+      <div class="card">
+        <h3>รูปปลาไม่ตรงของจริง</h3>
+        เคยเจอปลาที่มาถึงบ้านแล้วสี/ฟอร์มไม่เหมือนรูป หรือรูปเดียวกันถูกใช้ในหลายโพสต์  
+        ไม่รู้ว่าใครคือเจ้าของตัวจริง
+      </div>
+      <div class="card">
+        <h3>ไม่มีข้อมูลเก็บไว้ในระยะยาว</h3>
+        พอเวลาผ่านไป ลืมไปแล้วว่าปลาตัวนี้ได้มาจากไหน ฟาร์มอะไร สายไหน  
+        ทำให้ต่อยอดเป็นสายเพาะของตัวเองได้ยาก
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER VALUE -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">ถ้าปลาทุกตัวมี Digital Pedigree ติดตัว จะเปลี่ยนประสบการณ์ซื้อของคุณอย่างไร?</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>เห็นพ่อแม่พันธุ์ และฟาร์มต้นทางจริง</h3>
+        สแกน QR แล้วเห็นข้อมูลสายพันธุ์ ฟาร์มที่เพาะ ประวัติเจ้าของ  
+        ทำให้รู้ว่าปลาที่ถืออยู่มาจากไหนจริง ๆ
+      </div>
+      <div class="card">
+        <h3>มั่นใจเวลาซื้อปลาราคาแพง</h3>
+        ปลาหลักพัน–หลักหมื่น ถ้ามีข้อมูลยืนยันว่ามาจากสายไหน ฟาร์มไหน และมีเจ้าของกี่คน  
+        จะช่วยให้ตัดสินใจได้ง่ายขึ้นมาก
+      </div>
+      <div class="card">
+        <h3>เก็บเป็นประวัติสะสมของตัวเอง</h3>
+        ปลาทุกตัวกลายเป็น “ทรัพย์สินดิจิทัล” ที่มีประวัติของตัวเอง  
+        เหมือนสะสมการ์ดหรือ item ในเกม แต่เป็นปลาจริง
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER FAQ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">คำถามที่คนซื้อมักถามเรา</h2>
+    <div class="grid-2">
+      <div>
+        <div class="faq-item">
+          <div class="faq-q">ถ้าฟาร์มไม่ใช้ระบบนี้ ผมยังดูข้อมูลได้ไหม?</div>
+          <div class="faq-a">
+            ถ้าฟาร์มยังไม่ใช้ FishConnect ตอนนี้จะยังไม่มีข้อมูลให้ดู  
+            แต่หน้านี้มีไว้เพื่อทดสอบว่า ถ้ามีระบบแบบนี้ คนซื้ออย่างคุณ “อยากใช้จริงไหม”
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">ต้องโหลดแอปไหม?</div>
+          <div class="faq-a">
+            แนวคิดคือ ใช้แค่สแกน QR ผ่านมือถือ ก็เห็นข้อมูลทั้งหมดได้  
+            ไม่อยากบังคับให้โหลดแอปถ้าไม่จำเป็น
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item">
+          <div class="faq-q">จะมีค่าใช้จ่ายสำหรับคนซื้อไหม?</div>
+          <div class="faq-a">
+            เบื้องต้น เราต้องการให้คนซื้อ “เข้าถึงข้อมูลฟรี”  
+            แล้วให้ฟาร์มหรือ marketplace เป็นคนร่วมพัฒนาระบบ
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">แล้วตอนนี้ผมช่วยอะไรได้บ้าง?</div>
+          <div class="faq-a">
+            แค่เล่าว่าเวลาคุณซื้อปลา เคยเจอปัญหาอะไร และอยากให้ระบบแบบนี้ช่วยอะไรได้บ้าง  
+            Feedback ของคุณจะเป็นตัวกำหนดว่าควรสร้างต่อหรือไม่
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER FORM -->
+<section id="lead" class="section">
+  <div class="container">
+    <form class="form-wrapper" id="buyerForm">
+      <div class="form-title">ลงทะเบียนเพื่อขอดูตัวอย่าง Digital Pedigree และช่วยเราออกแบบระบบ</div>
+      <div class="form-sub">
+        กรอกข้อมูลสั้น ๆ ด้านล่างนี้ เราจะส่งตัวอย่างหน้าข้อมูลปลาที่มี Digital Pedigree ให้ดู  
+        และอาจติดต่อเพื่อพูดคุยเพิ่มเติมเกี่ยวกับประสบการณ์ซื้อปลาของคุณ
+      </div>
+
+      <div class="form-group">
+        <label for="buyer_name">ชื่อของคุณ</label>
+        <input id="buyer_name" type="text" required placeholder="เช่น คุณนัท นักสะสมปลากัด" />
+      </div>
+
+      <div class="form-group">
+        <label for="buyer_phone">เบอร์ติดต่อ / LINE</label>
+        <input id="buyer_phone" type="tel" required placeholder="เช่น 08X-XXX-XXXX หรือ LINE ID" />
+      </div>
+
+      <div class="form-group">
+        <label for="buyer_fish">คุณสนใจปลาประเภทไหนมากที่สุด?</label>
+        <select id="buyer_fish">
+          <option value="ปลากัด">ปลากัด</option>
+          <option value="ปลาคราฟ์">ปลาคราฟ์ (Koi)</option>
+          <option value="ปลาทอง">ปลาทอง</option>
+          <option value="ปลาหางนกยูง">ปลาหางนกยูง</option>
+          <option value="ปลาบอลลูน">ปลาบอลลูน</option>
+          <option value="อื่น ๆ">ปลาอื่น ๆ</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="buyer_goal">ตอนซื้อปลา คุณเคยเจอปัญหาอะไรบ้าง?</label>
+        <textarea id="buyer_goal" placeholder="เช่น เคยซื้อแล้วสีไม่ตรงรูป, ไม่รู้สาย, กลัวโดนหลอก ฯลฯ"></textarea>
+      </div>
+
+      <div class="consent-group">
+        <label class="consent-label">
+          <input type="checkbox" id="buyer_consent" />
+          <span>
+            ข้าพเจ้าได้อ่านและยินยอมตาม
+            <a href="https://sites.google.com/view/fishconnect-privacy-policy" target="_blank" rel="noopener">
+              นโยบายความเป็นส่วนตัวของ FishConnect
+            </a>
+            และยินยอมให้เก็บ ใช้ และประมวลผลข้อมูลส่วนบุคคลของข้าพเจ้า
+            เพื่อวัตถุประสงค์ในการติดต่อกลับและวิเคราะห์ความต้องการของผู้ซื้อ
+          </span>
+        </label>
+        <div class="form-note">
+          คุณสามารถถอนการยินยอมได้ทุกเมื่อ โดยติดต่ออีเมล: <strong>admin@fishconnect.co</strong>
+        </div>
+      </div>
+
+      <button type="submit" class="form-btn">ส่งข้อมูลเพื่อรับตัวอย่าง Digital Pedigree</button>
+      <div class="form-note">
+        ข้อมูลของคุณจะถูกเก็บใน Google Sheets เพื่อใช้วิเคราะห์ความต้องการจริงของผู้ซื้อปลาในช่วงทดลองตลาด
+      </div>
+      <div id="buyer-status" class="form-status"></div>
+    </form>
+  </div>
+</section>
+
+<div class="download-bar">
+  <button class="download-btn" id="downloadBuyerBtn">⬇️ Download buyer-index.html</button>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2025 FishConnect · Buyer Landing</div>
+    <div>หน้านี้ใช้สำหรับทดสอบความต้องการของผู้ซื้อปลาสวยงาม ก่อนสร้างฟีเจอร์จริง</div>
+  </div>
+</footer>
+
+<script>
+  const BUYER_API =
+    "https://script.google.com/macros/s/AKfycbxP360BEyfMQznZPVl0XQal6qDmeOr8PoEqRVEQFxLCgrzyQklzZeieAdf3InSqs4qC/exec";
+
+  function scrollToLead() {
+    const el = document.getElementById("lead");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // อ่าน UTM จาก URL
+  function getUTM() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      utm_source: params.get("utm_source") || "",
+      utm_medium: params.get("utm_medium") || "",
+      utm_campaign: params.get("utm_campaign") || "",
+      utm_term: params.get("utm_term") || "",
+      utm_content: params.get("utm_content") || ""
+    };
+  }
+  const UTM_DATA = getUTM();
+
+  document.getElementById("buyerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const statusEl = document.getElementById("buyer-status");
+    const consent = document.getElementById("buyer_consent");
+
+    if (!consent.checked) {
+      statusEl.textContent = "กรุณาติ๊กยืนยันการยินยอมตามนโยบายความเป็นส่วนตัวก่อนส่งข้อมูล";
+      return;
+    }
+
+    const payload = {
+      role: "buyer",
+      name: document.getElementById("buyer_name").value,
+      phone: document.getElementById("buyer_phone").value,
+      fish_type: document.getElementById("buyer_fish").value,
+      message: document.getElementById("buyer_goal").value,
+      utm_source: UTM_DATA.utm_source,
+      utm_medium: UTM_DATA.utm_medium,
+      utm_campaign: UTM_DATA.utm_campaign,
+      utm_term: UTM_DATA.utm_term,
+      utm_content: UTM_DATA.utm_content,
+      timestamp: new Date().toISOString(),
+      consent: true
+    };
+
+    statusEl.textContent = "กำลังส่งข้อมูล...";
+
+    try {
+      await fetch(BUYER_API, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      // Pixel Event: Lead (Buyer)
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", {
+          value: 0,
+          currency: "THB",
+          source: "buyer_landing",
+        });
+      }
+
+      statusEl.textContent = "ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณครับ 🙏";
+      e.target.reset();
+      consent.checked = false;
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่อีกครั้ง";
+    }
+  });
+
+  // Download buyer-index.html
+  document.getElementById("downloadBuyerBtn").addEventListener("click", () => {
+    const source = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+    const blob = new Blob([source], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "buyer-index.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
+

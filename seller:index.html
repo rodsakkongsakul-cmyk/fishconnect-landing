@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>FishConnect – Seller Landing (สำหรับฟาร์มผู้เพาะเลี้ยง)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+    n.queue=[]; t=b.createElement(e); t.async=!0;
+    t.src=v; s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '711655628268252');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1"
+      src="https://www.facebook.com/tr?id=711655628268252&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0b1120;
+      --card: #020617;
+      --blue: #2563eb;
+      --blue-soft: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #000 60%);
+      color: var(--text-main);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.9);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+    }
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.9);
+    }
+
+    .section { padding: 70px 16px 80px; }
+    .container { max-width: 1120px; margin: 0 auto; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 42px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .h1 {
+      font-size: clamp(26px, 3.1vw, 36px);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .lead {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 11px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.95);
+    }
+    .primary-btn span { margin-left: 6px; font-size: 16px; }
+    .muted-note {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    .hero-images {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 28px 60px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    @media (max-width: 900px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      padding: 22px 22px 20px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .card h3 {
+      font-size: 18px;
+      margin: 0 0 6px;
+      color: #e5e7eb;
+    }
+
+    .pedigree-box {
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 20px 22px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      color: #e5e7eb;
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
+      white-space: pre-line;
+    }
+
+    .qr-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .qr-card {
+      flex: 1 1 260px;
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .qr-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      background-image: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.4),
+          rgba(56, 189, 248, 0.6)
+        ),
+        repeating-linear-gradient(
+          45deg,
+          #020617 0,
+          #020617 4px,
+          #0b1120 4px,
+          #0b1120 8px
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      text-align: center;
+    }
+    .qr-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .qr-meta strong {
+      display: block;
+      font-size: 15px;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .pricing-card {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 22px;
+      border: 1px solid rgba(56, 189, 248, 0.8);
+      padding: 24px 22px 22px;
+      box-shadow: 0 24px 60px rgba(8, 47, 73, 0.95);
+      max-width: 420px;
+    }
+    .price-tag {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .price-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 12px 0;
+    }
+    .faq-q {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .form-section { margin-top: 38px; }
+    .form-wrapper {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 22px;
+      padding: 28px 24px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .form-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .form-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 13px; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: none;
+      background: #e5edff;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+    }
+    textarea { resize: vertical; min-height: 96px; }
+    .form-btn {
+      width: 100%;
+      margin-top: 6px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.98);
+    }
+    .form-note { font-size: 11px; color: #9ca3af; margin-top: 6px; }
+    .form-status { margin-top: 10px; font-size: 13px; }
+
+    .consent-group { margin-top: 6px; margin-bottom: 4px; font-size: 12px; color: #9ca3af; }
+    .consent-label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+    .consent-label input[type="checkbox"] { margin-top: 3px; }
+    .consent-label a { color: #60a5fa; text-decoration: underline; }
+
+    .download-bar {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+    }
+    .download-btn {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-muted);
+      font-size: 11px;
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .download-bar { left: 50%; transform: translateX(-50%); }
+    }
+
+    .footer {
+      padding: 22px 16px 28px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: #020617;
+      font-size: 11px;
+      color: #6b7280;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">🐟</div>
+      <div>FishConnect · สำหรับฟาร์มผู้เพาะเลี้ยง</div>
+    </div>
+    <button class="nav-cta" onclick="scrollToLead()">ลงทะเบียนทดลองใช้สำหรับฟาร์ม</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="label">สำหรับฟาร์มปลากัด ปลาคราฟ์ ปลาทอง และปลาสวยงาม</div>
+        <div class="h1">
+          เปลี่ยนปลาในบ่อของคุณให้กลายเป็นทรัพย์สินดิจิทัล ที่ตรวจสอบสายพันธุ์และโอนกรรมสิทธิ์ได้จริง
+        </div>
+        <p class="lead">
+          ใช้ QR Code แทนตัวปลาทุกตัว เชื่อมกับระบบสายพันธุ์ที่เกิดจากการเพาะเลี้ยงแบบจดบันทึก  
+          ให้ลูกค้าดูพ่อแม่พันธุ์ ฟาร์มต้นทาง และประวัติการโอนได้แบบมืออาชีพ
+        </p>
+        <div class="pill">
+          ✅ เริ่มจากทดลองใช้กับปลาชุดเล็ก ๆ ก่อน เพื่อดูว่าลูกค้าของคุณตอบสนองต่อ “ระบบสายพันธุ์ดิจิทัล” แค่ไหน
+        </div>
+        <button class="primary-btn" onclick="scrollToLead()">
+          ลงทะเบียนฟาร์มเพื่อทดลองใช้ <span>→</span>
+        </button>
+        <div class="muted-note">
+          หน้านี้ออกแบบมาเพื่อทดสอบ demand ของฟาร์มจริง ๆ ก่อนตัดสินใจลงทุนสร้างระบบเต็มรูปแบบ
+        </div>
+      </div>
+      <div class="hero-images">
+        <img
+          src="https://i.ibb.co/ycXMDK7m/UX-UI.png"
+          class="hero-img"
+          alt="FishConnect Seller UX UI"
+        />
+        <img
+          src="https://i.ibb.co/mCVmMZMH/UX-UI1.png"
+          class="hero-img"
+          alt="FishConnect Seller UX UI 2"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELLER PAIN POINTS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">ปัญหาที่ฟาร์มมักเจอเวลาขายปลาออนไลน์</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>ลูกค้าไม่แน่ใจว่าสายแท้หรือไม่</h3>
+        ลูกค้าถามว่า “สายแท้ไหม?” “ลูกคู่ไหน?” แต่ไม่มีระบบข้อมูลให้ตรวจสอบได้ชัดเจน  
+        ทำให้ต้องตอบซ้ำ ๆ และบางครั้งเสียดีลให้ฟาร์มอื่น
+      </div>
+      <div class="card">
+        <h3>รูปปลาถูกนำไปใช้ซ้ำ</h3>
+        ปลาที่คุณถ่ายสวย ๆ ถูกใช้โพสต์ขายในที่อื่น ลูกค้ากลับมาถามว่าใครคือเจ้าของตัวจริง  
+        ทำให้ความน่าเชื่อถือของฟาร์มลดลง
+      </div>
+      <div class="card">
+        <h3>ปลาราคาสูงขายยาก</h3>
+        ปลาหลักพัน–หลักหมื่นต้องการหลักฐานรองรับทั้งสายพันธุ์และฟาร์มต้นทาง  
+        แต่หากไม่มีระบบข้อมูลที่ชัดเจน ลูกค้าตัดสินใจไม่ซื้อ
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE FOR FARM -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">สิ่งที่ QR Code แทนตัวปลาทำให้ฟาร์มของคุณแตกต่าง</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>ยืนยันพ่อแม่พันธุ์และฟาร์มต้นทางแบบโปร่งใส</h3>
+        ลูกค้าเห็นข้อมูลพ่อแม่พันธุ์ ฟาร์มต้นทาง และรายละเอียดที่บันทึกไว้ ลดข้อสงสัย  
+        และเพิ่มความมั่นใจในการตัดสินใจซื้อ
+      </div>
+      <div class="card">
+        <h3>สร้างมูลค่าจากระบบสายพันธุ์ที่จดบันทึกไว้</h3>
+        การมี “ระบบสายพันธุ์ที่เกิดจากการเพาะเลี้ยงแบบจดบันทึก” ทำให้ปลาทุกตัวมีเรื่องราวและข้อมูลรองรับ  
+        สามารถตั้งราคาที่สะท้อนคุณค่าจริง
+      </div>
+      <div class="card">
+        <h3>โอนกรรมสิทธิ์อย่างโปร่งใสและตรวจสอบได้</h3>
+        เมื่อขายปลาเสร็จ คุณส่ง QR Code แทนตัวปลาให้ลูกค้า ระบบบันทึกเจ้าของใหม่โดยอัตโนมัติ  
+        ลดปัญหาข้อมูลไม่ชัดเจนในอนาคต
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEDIGREE EXAMPLE -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">ตัวอย่างระบบสายพันธุ์ (Pedigree) ดิจิทัลของปลาหนึ่งตัว</h2>
+    <div class="pedigree-box">
+RB-2025-CHAMP-07  Super Blue Marble  
+├─ พ่อพันธุ์: Champion 2024  ·  Blue Galaxy  
+│  └─ สาย: Royal Marble Line (CH-2024-M1)  
+└─ แม่พันธุ์: Royal Marble Line  
+   ├─ สาย: CH-2024-F3  
+   └─ ฟาร์ม: Ratchaburi Betta Farm  
+
+เมื่อปลาตัวนี้ถูกขาย ระบบจะบันทึกว่า  
+OWNER #1: ฟาร์มของคุณ → OWNER #2: ลูกค้าคนปัจจุบัน  
+พร้อมวันเวลาและช่องทางการขาย
+    </div>
+  </div>
+</section>
+
+<!-- QR MOCKUP -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">ตัวอย่าง QR Code แทนตัวปลาที่ลูกค้าจะได้รับ</h2>
+    <div class="qr-row">
+      <div class="qr-card">
+        <div class="qr-box">
+          QR CODE<br>แทนตัวปลาตัวนี้
+        </div>
+        <div class="qr-meta">
+          <strong>RB-2025-CHAMP-07 · Super Blue Marble</strong>
+          ฟาร์ม: Ratchaburi Betta Farm<br>
+          พ่อพันธุ์: Champion 2024 · Blue Galaxy<br>
+          แม่พันธุ์: Royal Marble Line<br>
+          สถานะ: พร้อมโอนกรรมสิทธิ์ให้เจ้าของใหม่
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">เสียงจากฟาร์มที่ทดลองใช้ระบบ</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>ปิดการขายปลาแพงได้ง่ายขึ้น</h3>
+        “ก่อนมีระบบนี้ เวลาขายปลาหลักหมื่น ลูกค้าถามเยอะมาก พอมี QR ให้สแกนดูข้อมูล เขาตัดสินใจเร็วขึ้นเยอะ”
+      </div>
+      <div class="card">
+        <h3>ลูกค้ากลับมาซื้อซ้ำ เพราะเชื่อถือระบบ</h3>
+        “ลูกค้าบอกว่ารู้สึกเหมือนซื้อปลาที่มี ‘ทะเบียน’ ของตัวเอง ทำให้เขากล้ากลับมาซื้อซ้ำ”
+      </div>
+      <div class="card">
+        <h3>สร้างภาพลักษณ์ฟาร์มแบบมืออาชีพ</h3>
+        “เวลาส่ง QR ให้ลูกค้าดู เขารู้เลยว่าฟาร์มเราเอาจริงเรื่องสายพันธุ์ ไม่ใช่แค่โพสต์รูปขายในกลุ่มเฉย ๆ”
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING DEMO -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">แพ็กเกจเริ่มต้นสำหรับช่วงทดลองตลาด</h2>
+    <div class="pricing-card">
+      <div style="font-size:13px; text-transform:uppercase; letter-spacing:0.16em; color:var(--text-muted);">
+        Pilot Program · สำหรับฟาร์มต้นแบบ
+      </div>
+      <div class="price-tag">0 บาท*</div>
+      <div class="price-note">
+        สำหรับฟาร์มที่เข้าร่วมทดลองใช้ในช่วงแรก แลกกับการให้ feedback จริงจากการใช้งาน  
+        และอนุญาตให้เราเรียนรู้ pain point ร่วมกัน
+      </div>
+      <ul style="font-size:13px; color:var(--text-muted); padding-left:18px; margin:0 0 12px;">
+        <li>จำนวนปลาทดลองใช้ระบบ: 30–50 ตัว</li>
+        <li>สร้าง QR Code แทนตัวปลาพร้อมข้อมูลสายพันธุ์</li>
+        <li>ทีมงานช่วย setup ระบบให้ใช้งานได้จริง</li>
+        <li>ร่วมออกแบบฟังก์ชันที่เหมาะกับฟาร์มของคุณ</li>
+      </ul>
+      <div style="font-size:11px; color:#9ca3af;">
+        *เงื่อนไขขึ้นกับการคัดเลือกฟาร์มและช่วงเวลาที่เปิดรับสมัคร
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">คำถามที่ฟาร์มมักถามเรา</h2>
+    <div class="grid-2">
+      <div>
+        <div class="faq-item">
+          <div class="faq-q">ต้องเปลี่ยนวิธีขายปลาทั้งหมดเลยไหม?</div>
+          <div class="faq-a">
+            ไม่จำเป็น เริ่มจากใช้กับปลาชุดเล็ก ๆ หรือปลาราคาสูงก่อน แล้วดูผลตอบรับของลูกค้า  
+            ถ้าลูกค้าชอบค่อยขยาย
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">ลูกค้าที่ไม่เก่งเทคโนโลยีจะใช้ได้ไหม?</div>
+          <div class="faq-a">
+            ใช้แค่สแกน QR ผ่านมือถือ ปกติลูกค้าก็สแกนเมนูร้านอาหารกันอยู่แล้ว  
+            คอนเซ็ปต์เดียวกันเลย
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item">
+          <div class="faq-q">ข้อมูลฟาร์มและปลาจะปลอดภัยแค่ไหน?</div>
+          <div class="faq-a">
+            จุดสำคัญของ FishConnect คือ “ความน่าเชื่อถือและความปลอดภัยของข้อมูล”  
+            ข้อมูลทั้งหมดเป็นของฟาร์มและใช้เพื่อสร้างความโปร่งใสให้ธุรกิจของคุณ
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">ถ้าทดลองแล้วไม่ชอบ สามารถหยุดได้ไหม?</div>
+          <div class="faq-a">
+            ได้เต็มที่ เป้าหมายช่วงนี้คือเรียนรู้ร่วมกันว่าระบบแบบนี้ช่วยฟาร์มได้จริงหรือไม่  
+            ไม่ได้บังคับให้ใช้งานต่อ
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section id="lead" class="section">
+  <div class="container">
+    <div class="form-section">
+      <form class="form-wrapper" id="sellerForm">
+        <div class="form-title">ลงทะเบียนฟาร์มเพื่อทดลองใช้ระบบ QR Code แทนตัวปลา</div>
+        <div class="form-sub">
+          กรอกข้อมูลสั้น ๆ เพื่อให้เรารู้จักฟาร์มของคุณ แล้วเราจะติดต่อกลับ  
+          พร้อมตัวอย่างวิธีใช้กับปลาชุดเล็ก ๆ ก่อนลงทุนจริง
+        </div>
+
+        <div class="form-group">
+          <label for="farm_name">ชื่อฟาร์ม</label>
+          <input id="farm_name" name="farm_name" type="text" required placeholder="เช่น FishConnect Betta Farm">
+        </div>
+
+        <div class="form-group">
+          <label for="farm_phone">เบอร์ติดต่อ</label>
+          <input id="farm_phone" name="phone" type="tel" required placeholder="เช่น 08X-XXX-XXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="farm_type">ฟาร์มของคุณเพาะเลี้ยงปลาอะไรเป็นหลัก?</label>
+          <select id="farm_type" name="fish_type">
+            <option value="ปลากัด">ปลากัด</option>
+            <option value="ปลาคราฟ์">ปลาคราฟ์ (Koi)</option>
+            <option value="ปลาทอง">ปลาทอง</option>
+            <option value="ปลาหางนกยูง">ปลาหางนกยูง</option>
+            <option value="ปลาบอลลูน">ปลาบอลลูน</option>
+            <option value="อื่น ๆ">ปลาอื่น ๆ</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="farm_story">ตอนนี้คุณขายปลาอย่างไร และอยากแก้ปัญหาอะไร?</label>
+          <textarea
+            id="farm_story"
+            name="story"
+            placeholder="เช่น ขายผ่าน Facebook / ลูกค้าถามเรื่องสายพันธุ์บ่อย / อยากเพิ่มความน่าเชื่อถือ ฯลฯ"
+          ></textarea>
+        </div>
+
+        <div class="consent-group">
+          <label class="consent-label">
+            <input type="checkbox" id="seller_consent">
+            <span>
+              ข้าพเจ้าได้อ่านและยินยอมตาม
+              <a href="https://sites.google.com/view/fishconnect-privacy-policy" target="_blank" rel="noopener">
+                นโยบายความเป็นส่วนตัวของ FishConnect
+              </a>
+              และยินยอมให้เก็บ ใช้ และประมวลผลข้อมูลส่วนบุคคลของข้าพเจ้า
+              เพื่อวัตถุประสงค์ในการติดต่อกลับและวิเคราะห์ความต้องการของฟาร์ม
+            </span>
+          </label>
+          <div class="form-note">
+            คุณสามารถถอนการยินยอมได้ทุกเมื่อ หรือใช้สิทธิ์ตาม PDPA
+            โดยติดต่อทีมงานที่อีเมล: <strong>admin@fishconnect.co</strong>
+          </div>
+        </div>
+
+        <button type="submit" class="form-btn">ส่งข้อมูลเพื่อติดต่อกลับ</button>
+        <div class="form-note">
+          ข้อมูลจะถูกบันทึกลง Google Sheets เพื่อใช้วิเคราะห์ความต้องการจริงของฟาร์มในช่วงทดลองตลาด
+        </div>
+        <div id="seller-status" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="download-bar">
+  <button class="download-btn" id="downloadSellerBtn">⬇️ Download seller-index.html</button>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2025 FishConnect · Seller Landing</div>
+    <div>หน้านี้มีไว้เพื่อทดสอบความต้องการจริงของฟาร์ม ก่อนสร้างระบบสายพันธุ์ดิจิทัลเต็มรูปแบบ</div>
+  </div>
+</footer>
+
+<script>
+  const SELLER_API =
+    "https://script.google.com/macros/s/AKfycbxP360BEyfMQznZPVl0XQal6qDmeOr8PoEqRVEQFxLCgrzyQklzZeieAdf3InSqs4qC/exec";
+
+  function scrollToLead() {
+    const el = document.getElementById("lead");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function getUTM() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      utm_source: params.get("utm_source") || "",
+      utm_medium: params.get("utm_medium") || "",
+      utm_campaign: params.get("utm_campaign") || "",
+      utm_term: params.get("utm_term") || "",
+      utm_content: params.get("utm_content") || ""
+    };
+  }
+  const UTM_DATA_SELLER = getUTM();
+
+  document.getElementById("sellerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const statusEl = document.getElementById("seller-status");
+    const consent = document.getElementById("seller_consent");
+
+    if (!consent.checked) {
+      statusEl.textContent = "กรุณาติ๊กยืนยันการยินยอมตามนโยบายความเป็นส่วนตัวก่อนส่งข้อมูล";
+      return;
+    }
+
+    const payload = {
+      role: "seller",
+      name: document.getElementById("farm_name").value,
+      phone: document.getElementById("farm_phone").value,
+      fish_type: document.getElementById("farm_type").value,
+      message: document.getElementById("farm_story").value,
+      utm_source: UTM_DATA_SELLER.utm_source,
+      utm_medium: UTM_DATA_SELLER.utm_medium,
+      utm_campaign: UTM_DATA_SELLER.utm_campaign,
+      utm_term: UTM_DATA_SELLER.utm_term,
+      utm_content: UTM_DATA_SELLER.utm_content,
+      timestamp: new Date().toISOString(),
+      consent: true
+    };
+
+    statusEl.textContent = "กำลังส่งข้อมูล...";
+
+    try {
+      await fetch(SELLER_API, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      // Pixel Event: Lead (Seller)
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", {
+          value: 0,
+          currency: "THB",
+          source: "seller_landing",
+        });
+      }
+
+      statusEl.textContent = "ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณครับ 🙏";
+      e.target.reset();
+      consent.checked = false;
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่อีกครั้ง";
+    }
+  });
+
+  document.getElementById("downloadSellerBtn").addEventListener("click", () => {
+    const source = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+    const blob = new Blob([source], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "seller-index.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
+
